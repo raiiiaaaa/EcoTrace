@@ -1,0 +1,7 @@
+{
+  "name": "EcoTrace",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
