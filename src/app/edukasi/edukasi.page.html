@@ -1,0 +1,38 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center">Panduan Sampah</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="search-filter-section">
+    <ion-searchbar placeholder="Search" [(ngModel)]="searchTerm" (ionInput)="filterData()"></ion-searchbar>
+    <div class="filter-chips">
+      <ion-chip [color]="currentFilter === 'Semua' ? 'success' : 'medium'" (click)="setFilter('Semua')">
+        <ion-label>Semua</ion-label>
+      </ion-chip>
+      <ion-chip [color]="currentFilter === 'Plastik' ? 'success' : 'medium'" (click)="setFilter('Plastik')">
+        <ion-label>Plastik</ion-label>
+      </ion-chip>
+      <ion-chip [color]="currentFilter === 'Kompos' ? 'success' : 'medium'" (click)="setFilter('Kompos')">
+        <ion-label>Kompos</ion-label>
+      </ion-chip>
+      <ion-chip [color]="currentFilter === 'B3' ? 'success' : 'medium'" (click)="setFilter('B3')">
+        <ion-label>B3</ion-label>
+      </ion-chip>
+    </div>
+  </div>
+
+  <ion-list lines="none" class="article-list">
+    <ion-card *ngFor="let article of filteredArticles" class="article-card" [ngStyle]="{'background-color': article.color}">
+      <ion-item class="article-item" color="transparent" lines="none" button (click)="openArticle(article)" detail="false">
+        <ion-label>
+          <h2 class="title-wrap">{{ article.title }}</h2>
+        </ion-label>
+        <div slot="end" class="icon-wrap">
+          <ion-icon [name]="article.icon"></ion-icon>
+        </div>
+      </ion-item>
+    </ion-card>
+  </ion-list>
+</ion-content>

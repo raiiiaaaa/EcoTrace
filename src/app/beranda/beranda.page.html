@@ -1,0 +1,69 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center">EcoTrace</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="profile-header">
+    <h2>Hai {{ userName }} !</h2>
+    <p>Lvl {{ level }} Eco Warrior <ion-icon name="star" color="warning"></ion-icon></p>
+  </div>
+
+  <div class="points-circle">
+    <div class="circle" [style.--progress]="progressPercentage + '%'">
+      <div class="circle-inner">
+        <span>Poin:</span>
+        <h1 class="points">{{ points | number }}</h1>
+      </div>
+    </div>
+    <p class="next-level">Lanjut Level: {{ nextLevelPoints | number }} pts</p>
+  </div>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6">
+        <ion-card class="stat-card">
+          <ion-card-content>
+            <p>Total Plastik:</p>
+            <h3>{{ stats.totalPlastik | number:'1.1-2' }} kg</h3>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6">
+        <ion-card class="stat-card">
+          <ion-card-content>
+            <p>Kertas Terselamatkan:</p>
+            <h3>{{ stats.totalKertas | number:'1.1-2' }} kg</h3>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6">
+        <ion-card class="stat-card">
+          <ion-card-content>
+            <p>Kaleng Aluminium:</p>
+            <h3>{{ stats.totalLogam | number:'1.1-2' }} kg</h3>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col size="6">
+        <ion-card class="stat-card">
+          <ion-card-content>
+            <p>Dampak Pohon:</p>
+            <h3>{{ stats.impact }}</h3>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-card color="warning" class="challenge-card">
+    <ion-card-header>
+      <ion-card-title>Tantangan Hari Ini</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-icon name="leaf" class="challenge-icon"></ion-icon>
+      Challenge: Hindari Botol Plastik Sekarang! (+20 pts)
+    </ion-card-content>
+  </ion-card>
+</ion-content>

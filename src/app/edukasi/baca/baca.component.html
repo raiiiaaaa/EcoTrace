@@ -1,0 +1,34 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-title>Detail Edukasi</ion-title>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismiss()">
+        <ion-icon name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="article-header" *ngIf="article.imageUrl" [ngStyle]="{'background-image': 'url(' + article.imageUrl + ')'}">
+    <div class="header-overlay">
+      <ion-chip color="success" class="category-chip">
+        <ion-icon [name]="article.icon"></ion-icon>
+        <ion-label>{{ article.category }}</ion-label>
+      </ion-chip>
+      <h2>{{ article.title }}</h2>
+    </div>
+  </div>
+
+  <div class="article-body ion-padding">
+    <div *ngIf="!article.imageUrl">
+      <ion-chip color="success" class="category-chip">
+        <ion-icon [name]="article.icon"></ion-icon>
+        <ion-label>{{ article.category }}</ion-label>
+      </ion-chip>
+      <h2>{{ article.title }}</h2>
+    </div>
+    
+    <p class="content-text">{{ article.content }}</p>
+  </div>
+</ion-content>

@@ -1,0 +1,40 @@
+.filter-chips {
+  display: flex;
+  overflow-x: auto;
+  padding: 5px 15px 10px 15px;
+  gap: 10px;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.article-list {
+  padding-top: 10px;
+}
+
+.article-card {
+  margin: 15px 16px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+
+  .article-item {
+    --background: transparent;
+    padding: 10px 5px;
+  }
+
+  .title-wrap {
+    font-size: 18px;
+    font-weight: 700;
+    color: #333;
+    white-space: normal;
+    line-height: 1.4;
+    padding-right: 20px;
+  }
+
+  .icon-wrap {
+    font-size: 50px;
+    color: #333;
+    opacity: 0.8;
+  }
+}

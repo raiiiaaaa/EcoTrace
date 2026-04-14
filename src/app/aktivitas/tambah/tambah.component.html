@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-toolbar color="light">
+    <ion-title>{{ isEditMode ? 'Detail / Edit Data' : 'Tambah Setoran' }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">Tutup</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="form-wrapper">
+    <p class="description" *ngIf="!isEditMode">Catat sampah yang berhasil kamu pilah hari ini untuk mendapatkan poin.</p>
+    <p class="description" *ngIf="isEditMode">Ubah informasi setoran sampah terdaftar atau hapus catatan ini.</p>
+
+    <ion-item lines="none" class="input-item">
+      <ion-label position="stacked">Nama Sampah</ion-label>
+      <ion-input type="text" placeholder="Contoh: Botol Aqua 600ml" [(ngModel)]="name"></ion-input>
+    </ion-item>
+
+    <ion-item lines="none" class="input-item">
+      <ion-label position="stacked">Jenis Sampah</ion-label>
+      <ion-select interface="action-sheet" placeholder="Pilih Jenis" [(ngModel)]="type">
+        <ion-select-option value="Plastik">Plastik</ion-select-option>
+        <ion-select-option value="Kertas">Kertas</ion-select-option>
+        <ion-select-option value="Logam">Logam</ion-select-option>
+        <ion-select-option value="B3">Sampah B3</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item lines="none" class="input-item">
+      <ion-label position="stacked">Berat (Kg)</ion-label>
+      <ion-input type="number" placeholder="0.0" [(ngModel)]="weight"></ion-input>
+    </ion-item>
+
+    <div class="action-buttons">
+      <ion-button expand="block" color="success" class="save-btn" (click)="save('Tersetor')">
+        {{ isEditMode ? 'Perbarui (Tersetor)' : 'Setor Sekarang (Dapat Poin)' }}
+      </ion-button>
+      <ion-button expand="block" fill="outline" color="medium" class="store-btn" (click)="save('Tersimpan')">
+        {{ isEditMode ? 'Perbarui (Tersimpan)' : 'Simpan di Rumah (Belum Disetor)' }}
+      </ion-button>
+      
+      <!-- Delete Button for Edit Mode -->
+      <ion-button expand="block" fill="clear" color="danger" *ngIf="isEditMode" (click)="delete()" style="margin-top: 15px;">
+        <ion-icon name="trash" slot="start"></ion-icon> Hapus Data
+      </ion-button>
+    </div>
+  </div>
+</ion-content>

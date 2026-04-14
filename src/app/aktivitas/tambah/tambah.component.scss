@@ -1,0 +1,36 @@
+.form-wrapper {
+  padding-top: 10px;
+
+  .description {
+    font-size: 14px;
+    color: var(--ion-color-medium);
+    margin-bottom: 20px;
+    line-height: 1.5;
+  }
+
+  .input-item {
+    margin-bottom: 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    --background: #fafafa;
+    
+    ion-label {
+      font-weight: 600;
+      color: #333;
+    }
+
+    ion-input, ion-select {
+      font-size: 15px;
+    }
+  }
+
+  .action-buttons {
+    margin-top: 30px;
+
+    ion-button {
+      margin-bottom: 15px;
+      font-weight: 600;
+      height: 48px;
+    }
+  }
+}

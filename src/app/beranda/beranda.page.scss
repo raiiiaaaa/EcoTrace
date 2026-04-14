@@ -1,0 +1,109 @@
+.profile-header {
+  margin-bottom: 20px;
+  h2 {
+    margin: 0;
+    font-weight: 700;
+  }
+  p {
+    margin: 5px 0 0 0;
+    color: var(--ion-color-medium);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+}
+
+.points-circle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 30px 0;
+
+  .circle {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: conic-gradient(var(--ion-color-success) var(--progress, 0%), var(--ion-color-light) 0%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+
+    .circle-inner {
+      width: 150px;
+      height: 150px;
+      background-color: #ffffff;
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      span {
+        font-size: 16px;
+        color: var(--ion-color-medium);
+        font-weight: 600;
+      }
+      
+      h1.points {
+        margin: 5px 0 0 0;
+        font-size: 36px;
+        font-weight: 800;
+        color: var(--ion-color-dark);
+      }
+    }
+  }
+
+  .next-level {
+    margin-top: 15px;
+    font-size: 14px;
+    color: var(--ion-color-medium);
+  }
+}
+
+.stat-card {
+  margin: 5px;
+  border-radius: 12px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+
+  ion-card-content {
+    padding: 15px;
+    text-align: center;
+
+    p {
+      margin: 0 0 5px 0;
+      font-size: 13px;
+      color: var(--ion-color-medium);
+    }
+    h3 {
+      margin: 0;
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--ion-color-dark);
+    }
+  }
+}
+
+.challenge-card {
+  margin: 20px 5px;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(var(--ion-color-warning-rgb), 0.3);
+
+  ion-card-title {
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  ion-card-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 14px;
+    font-weight: 600;
+
+    .challenge-icon {
+      font-size: 30px;
+      color: var(--ion-color-success);
+    }
+  }
+}

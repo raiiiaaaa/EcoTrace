@@ -1,0 +1,51 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-title class="ion-text-center">Aktivitas Saya</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="search-filter-section">
+    <ion-searchbar placeholder="Search" [(ngModel)]="searchTerm" (ionInput)="filterData()"></ion-searchbar>
+    <div class="filter-chips">
+      <ion-chip [color]="currentFilter === 'Semua' ? 'success' : 'medium'" (click)="setFilter('Semua')">
+        <ion-label>Semua</ion-label>
+      </ion-chip>
+      <ion-chip [color]="currentFilter === 'Plastik' ? 'success' : 'medium'" (click)="setFilter('Plastik')">
+        <ion-label>Plastik</ion-label>
+      </ion-chip>
+      <ion-chip [color]="currentFilter === 'Kertas' ? 'success' : 'medium'" (click)="setFilter('Kertas')">
+        <ion-label>Kertas</ion-label>
+      </ion-chip>
+      <ion-chip [color]="currentFilter === 'Logam' ? 'success' : 'medium'" (click)="setFilter('Logam')">
+        <ion-label>Logam</ion-label>
+      </ion-chip>
+    </div>
+  </div>
+
+  <ion-list lines="none">
+    <ion-card *ngFor="let item of filteredActivities" class="activity-card">
+      <ion-item button (click)="openAddModal(item)" detail="false">
+        <div slot="start" class="icon-box" [ngClass]="item.type.toLowerCase()">
+          <ion-icon name="cube" *ngIf="item.type === 'Plastik'"></ion-icon>
+          <ion-icon name="document-text" *ngIf="item.type === 'Kertas'"></ion-icon>
+          <ion-icon name="trash-bin" *ngIf="item.type === 'Logam'"></ion-icon>
+        </div>
+        <ion-label>
+          <h3>{{ item.name }}</h3>
+          <p>{{ item.weight }} kg</p>
+          <span class="date">{{ item.date }}</span>
+        </ion-label>
+        <ion-badge slot="end" [color]="item.status === 'Tersetor' ? 'success' : 'medium'">
+          {{ item.status }}
+        </ion-badge>
+      </ion-item>
+    </ion-card>
+  </ion-list>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="success" (click)="openAddModal()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

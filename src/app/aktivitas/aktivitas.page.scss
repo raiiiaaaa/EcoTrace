@@ -1,0 +1,67 @@
+.filter-chips {
+  display: flex;
+  overflow-x: auto;
+  padding: 5px 15px 10px 15px;
+  gap: 10px;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.activity-card {
+  margin: 10px 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+
+  ion-item {
+    --padding-start: 15px;
+    --inner-padding-end: 15px;
+
+    .icon-box {
+      width: 45px;
+      height: 45px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 15px;
+      font-size: 24px;
+      
+      &.plastik {
+        background-color: #c2e3fc;
+        color: #0b73c4;
+      }
+      &.kertas {
+        background-color: #e0e0e0;
+        color: #555;
+      }
+      &.logam {
+        background-color: #dcf4c6;
+        color: #2e7d32;
+      }
+    }
+
+    h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 2px;
+    }
+    p {
+      font-size: 14px;
+      color: var(--ion-color-medium);
+      margin: 0;
+    }
+    .date {
+      font-size: 11px;
+      color: #999;
+      display: block;
+      margin-top: 4px;
+    }
+
+    ion-badge {
+      font-weight: 600;
+      padding: 5px 8px;
+    }
+  }
+}
