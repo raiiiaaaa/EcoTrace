@@ -13,8 +13,24 @@ export class BerandaPage {
   stats: any = { totalPlastik: 0, totalKertas: 0, totalLogam: 0, impact: '0.0' };
   userName: string = 'Masyarakat Bumi';
   level: number = 1;
+  levelTitle: string = 'Eco Beginner';
   nextLevelPoints: number = 500;
   progressPercentage: number = 0;
+
+  dailyTips: string[] = [
+    'Gunakan tas kain atau totebag saat berbelanja untuk mengurangi sampah plastik sekali pakai.',
+    'Matikan keran air saat menyikat gigi. Kebiasaan kecil ini bisa menghemat hingga 8 liter air per menit!',
+    'Pisahkan sampah organik dan anorganik di rumah agar proses daur ulang menjadi lebih mudah dan efisien.',
+    'Kurangi konsumsi daging merah. Industri peternakan menyumbang sekitar 14,5% emisi gas rumah kaca global.',
+    'Gunakan transportasi umum, bersepeda, atau berjalan kaki untuk mengurangi emisi karbon dari kendaraan pribadi.',
+    'Cabut charger dan perangkat elektronik dari stopkontak saat tidak digunakan untuk menghemat energi listrik.',
+    'Pilih produk dengan kemasan minimal atau kemasan yang dapat didaur ulang untuk mengurangi limbah kemasan.',
+    'Tanam pohon atau tanaman di sekitar rumah. Satu pohon dewasa mampu menyerap sekitar 22 kg CO₂ per tahun.',
+    'Gunakan lampu LED yang hemat energi. Lampu LED menggunakan 75% lebih sedikit energi dibanding lampu pijar biasa.',
+    'Kurangi penggunaan tisu dan pilih saputangan kain yang bisa dicuci ulang untuk mengurangi limbah kertas.',
+  ];
+
+  todayTip: string = this.dailyTips[0];
 
   constructor(private dataService: DataService, private alertCtrl: AlertController) {}
 
@@ -23,13 +39,41 @@ export class BerandaPage {
     this.stats = this.dataService.getStats();
     this.calculateLevel();
     this.checkUserName();
+    this.loadDailyTip();
+  }
+
+  loadDailyTip() {
+    const today = new Date();
+    const dateKey = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
+    const stored = localStorage.getItem('ecotrace_tip_date');
+
+    if (stored !== dateKey) {
+      const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
+      const index = seed % this.dailyTips.length;
+      localStorage.setItem('ecotrace_tip_date', dateKey);
+      localStorage.setItem('ecotrace_tip_index', index.toString());
+      this.todayTip = this.dailyTips[index];
+    } else {
+      const savedIndex = parseInt(localStorage.getItem('ecotrace_tip_index') || '0', 10);
+      this.todayTip = this.dailyTips[savedIndex] || this.dailyTips[0];
+    }
   }
 
   calculateLevel() {
     const thresholds = [500, 2000, 5000, 10000, 25000, 50000, 100000];
+    const titles = [
+      'Eco Beginner',
+      'Eco Learner',
+      'Eco Scout',
+      'Eco Ranger',
+      'Eco Protector',
+      'Eco Guardian',
+      'Eco Master',
+      'Eco Warrior'
+    ];
     this.level = 1;
     this.nextLevelPoints = thresholds[0];
-    
+
     for (let i = 0; i < thresholds.length; i++) {
       if (this.points >= thresholds[i]) {
         this.level = i + 2;
@@ -38,6 +82,8 @@ export class BerandaPage {
         break;
       }
     }
+
+    this.levelTitle = titles[this.level - 1] || 'Eco Legend';
 
     if (this.points >= thresholds[thresholds.length - 1]) {
       this.progressPercentage = 100;

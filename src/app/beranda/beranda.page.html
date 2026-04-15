@@ -7,7 +7,7 @@
 <ion-content [fullscreen]="true" class="ion-padding">
   <div class="profile-header">
     <h2>Hai {{ userName }} !</h2>
-    <p>Lvl {{ level }} Eco Warrior <ion-icon name="star" color="warning"></ion-icon></p>
+    <p>Lvl {{ level }} {{ levelTitle }} <ion-icon name="star" color="warning"></ion-icon></p>
   </div>
 
   <div class="points-circle">
@@ -59,11 +59,14 @@
 
   <ion-card color="warning" class="challenge-card">
     <ion-card-header>
-      <ion-card-title>Tantangan Hari Ini</ion-card-title>
+      <ion-card-title>
+        <ion-icon name="bulb-outline"></ion-icon>
+        Tips Hari Ini
+      </ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <ion-icon name="leaf" class="challenge-icon"></ion-icon>
-      Challenge: Hindari Botol Plastik Sekarang! (+20 pts)
+      {{ todayTip }}
     </ion-card-content>
   </ion-card>
 </ion-content>

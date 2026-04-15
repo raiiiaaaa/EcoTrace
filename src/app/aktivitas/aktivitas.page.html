@@ -27,9 +27,10 @@
     <ion-card *ngFor="let item of filteredActivities" class="activity-card">
       <ion-item button (click)="openAddModal(item)" detail="false">
         <div slot="start" class="icon-box" [ngClass]="item.type.toLowerCase()">
-          <ion-icon name="cube" *ngIf="item.type === 'Plastik'"></ion-icon>
-          <ion-icon name="document-text" *ngIf="item.type === 'Kertas'"></ion-icon>
-          <ion-icon name="trash-bin" *ngIf="item.type === 'Logam'"></ion-icon>
+          <img src="assets/icon/plastik.png" *ngIf="item.type === 'Plastik'" class="custom-waste-icon" />
+          <img src="assets/icon/kertas.png" *ngIf="item.type === 'Kertas'" class="custom-waste-icon" />
+          <img src="assets/icon/logam.png" *ngIf="item.type === 'Logam'" class="custom-waste-icon" />
+          <img src="assets/icon/b3.png" *ngIf="item.type?.toLowerCase() === 'b3' || item.name?.toLowerCase() === 'b3'" class="custom-waste-icon" />
         </div>
         <ion-label>
           <h3>{{ item.name }}</h3>
