@@ -12,10 +12,16 @@
     <p class="description" *ngIf="!isEditMode">Catat sampah yang berhasil kamu pilah hari ini untuk mendapatkan poin.</p>
     <p class="description" *ngIf="isEditMode">Ubah informasi setoran sampah terdaftar atau hapus catatan ini.</p>
 
-    <ion-item lines="none" class="input-item">
+    <ion-item lines="none" class="input-item" [class.input-error]="nameError">
       <ion-label position="stacked">Nama Sampah</ion-label>
-      <ion-input type="text" placeholder="Contoh: Botol Aqua 600ml" [(ngModel)]="name"></ion-input>
+      <ion-input
+        type="text"
+        placeholder="Contoh: Botol Aqua 600ml"
+        [(ngModel)]="name"
+        (ionInput)="nameError = false">
+      </ion-input>
     </ion-item>
+    <p class="error-msg" *ngIf="nameError">Nama sampah tidak boleh kosong.</p>
 
     <ion-item lines="none" class="input-item">
       <ion-label position="stacked">Jenis Sampah</ion-label>
@@ -27,10 +33,16 @@
       </ion-select>
     </ion-item>
 
-    <ion-item lines="none" class="input-item">
+    <ion-item lines="none" class="input-item" [class.input-error]="weightError">
       <ion-label position="stacked">Berat (Kg)</ion-label>
-      <ion-input type="number" placeholder="0.0" [(ngModel)]="weight"></ion-input>
+      <ion-input
+        type="number"
+        placeholder="0.0"
+        [(ngModel)]="weight"
+        (ionInput)="weightError = false">
+      </ion-input>
     </ion-item>
+    <p class="error-msg" *ngIf="weightError">Berat harus lebih dari 0.</p>
 
     <div class="action-buttons">
       <ion-button expand="block" color="success" class="save-btn" (click)="save('Tersetor')">

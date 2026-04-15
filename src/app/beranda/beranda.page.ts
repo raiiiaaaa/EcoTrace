@@ -38,24 +38,30 @@ export class BerandaPage {
     this.points = this.dataService.getPoints();
     this.stats = this.dataService.getStats();
     this.calculateLevel();
-    this.checkUserName();
+    this.loadUserName();
     this.loadDailyTip();
+  }
+
+  loadUserName() {
+    this.userName = this.dataService.getUserName();
+    if (this.userName === 'Masyarakat Bumi') {
+      this.promptUserName();
+    }
   }
 
   loadDailyTip() {
     const today = new Date();
     const dateKey = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
-    const stored = localStorage.getItem('ecotrace_tip_date');
+    const saved = this.dataService.getDailyTip();
 
-    if (stored !== dateKey) {
+    if (saved.date !== dateKey) {
+      // Hari baru: pilih tips berdasarkan tanggal sebagai seed
       const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
       const index = seed % this.dailyTips.length;
-      localStorage.setItem('ecotrace_tip_date', dateKey);
-      localStorage.setItem('ecotrace_tip_index', index.toString());
+      this.dataService.saveDailyTip(dateKey, index);
       this.todayTip = this.dailyTips[index];
     } else {
-      const savedIndex = parseInt(localStorage.getItem('ecotrace_tip_index') || '0', 10);
-      this.todayTip = this.dailyTips[savedIndex] || this.dailyTips[0];
+      this.todayTip = this.dailyTips[saved.index] || this.dailyTips[0];
     }
   }
 
@@ -92,38 +98,29 @@ export class BerandaPage {
     }
   }
 
-  async checkUserName() {
-    const storedName = localStorage.getItem('ecotrace_username');
-    if (storedName) {
-      this.userName = storedName;
-    } else {
-      const alert = await this.alertCtrl.create({
-        header: 'Selamat Datang!',
-        message: 'Siapa nama panggilanmu?',
-        backdropDismiss: false,
-        inputs: [
-          {
-            name: 'name',
-            type: 'text',
-            placeholder: 'Ketik nama kamu...'
+  async promptUserName() {
+    const alert = await this.alertCtrl.create({
+      header: 'Selamat Datang!',
+      message: 'Siapa nama panggilanmu?',
+      backdropDismiss: false,
+      inputs: [
+        {
+          name: 'name',
+          type: 'text',
+          placeholder: 'Ketik nama kamu...'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Mulai',
+          handler: (data) => {
+            const name = data.name && data.name.trim() !== '' ? data.name : 'Masyarakat Bumi';
+            this.userName = name;
+            this.dataService.saveUserName(name);
           }
-        ],
-        buttons: [
-          {
-            text: 'Mulai',
-            handler: (data) => {
-              if (data.name && data.name.trim() !== '') {
-                this.userName = data.name;
-                localStorage.setItem('ecotrace_username', data.name);
-              } else {
-                this.userName = 'Masyarakat Bumi';
-                localStorage.setItem('ecotrace_username', 'Masyarakat Bumi');
-              }
-            }
-          }
-        ]
-      });
-      await alert.present();
-    }
+        }
+      ]
+    });
+    await alert.present();
   }
 }

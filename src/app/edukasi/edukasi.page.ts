@@ -18,8 +18,15 @@ export class EdukasiPage {
   constructor(private dataService: DataService, private modalCtrl: ModalController) {}
 
   ionViewWillEnter() {
-    this.articles = this.dataService.getEducationArticles();
-    this.filterData();
+    this.dataService.getEducationArticles().subscribe({
+      next: (data) => {
+        this.articles = data;
+        this.filterData();
+      },
+      error: (err) => {
+        console.error('Gagal memuat artikel edukasi:', err);
+      }
+    });
   }
 
   setFilter(filter: string) {
@@ -42,11 +49,8 @@ export class EdukasiPage {
   async openArticle(article: EducationArticle) {
     const modal = await this.modalCtrl.create({
       component: BacaComponent,
-      componentProps: {
-        article: article
-      }
+      componentProps: { article }
     });
     await modal.present();
   }
 }
-

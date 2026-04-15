@@ -1,0 +1,38 @@
+[
+  {
+    "id": "1",
+    "title": "Kenali 7 Simbol Daur Ulang Plastik",
+    "icon": "water",
+    "color": "#c2e3fc",
+    "category": "Plastik",
+    "content": "Plastik memiliki 7 kode segitiga daur ulang. Nomor 1 (PET/PETE) dan 2 (HDPE) adalah yang paling mudah didaur ulang. Sedangkan no 3 (PVC) sangat berbahaya dan no 7 (Other) sulit didaur ulang.",
+    "imageUrl": "assets/images/edukasi-content/plastik/cover_plastic.png"
+  },
+  {
+    "id": "2",
+    "title": "Panduan Kompos Rumahan Mudah",
+    "icon": "leaf",
+    "color": "#dcf4c6",
+    "category": "Kompos",
+    "content": "Kumpulkan sampah organik (potongan sayur/buah). Siapkan wadah bertutup, cacah sisa organik, lapisi selang-seling dengan daun kering/tanah, jaga kelembapannya. Dalam 3-4 minggu kompos siap dipakai!",
+    "imageUrl": "assets/images/edukasi-content/kompos/cover_compost.png"
+  },
+  {
+    "id": "3",
+    "title": "Apa Itu Sampah B3 & Bahayanya",
+    "icon": "warning",
+    "color": "#ffecb3",
+    "category": "B3",
+    "content": "Sampah B3 meliputi baterai habis, lampu neon, kaleng obat nyamuk, hingga botol skincare berbahan kimia keras. Jangan campur ini ke sampah biasa karena racunnya bisa mencemari air dan tanah.",
+    "imageUrl": "assets/images/edukasi-content/b3/cover_b3.png"
+  },
+    {
+    "id": "4",
+    "title": "PANDAWARA",
+    "icon": "telescope",
+    "color": "#ffecb3",
+    "category": "Lainnya",
+    "content": "Sampah B3 meliputi baterai habis, lampu neon, kaleng obat nyamuk, hingga botol skincare berbahan kimia keras. Jangan campur ini ke sampah biasa karena racunnya bisa mencemari air dan tanah.",
+    "imageUrl": "assets/images/edukasi-content/lainnya/pandawara-group.jpeg"
+  }
+]

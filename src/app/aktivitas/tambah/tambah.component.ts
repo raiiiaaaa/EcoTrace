@@ -15,6 +15,8 @@ export class TambahComponent implements OnInit {
   type: 'Plastik' | 'Kertas' | 'Logam' | 'B3' = 'Plastik';
   weight: number = 0;
   isEditMode: boolean = false;
+  nameError: boolean = false;
+  weightError: boolean = false;
 
   constructor(
     private modalCtrl: ModalController,
@@ -37,13 +39,10 @@ export class TambahComponent implements OnInit {
   }
 
   async save(status: 'Tersetor' | 'Tersimpan') {
-    if (!this.name || this.weight <= 0) {
-      const toast = await this.toastCtrl.create({
-        message: 'Mohon isi nama dan berat dengan valid.',
-        duration: 2000,
-        color: 'danger'
-      });
-      toast.present();
+    this.nameError = !this.name || this.name.trim() === '';
+    this.weightError = !this.weight || this.weight <= 0;
+
+    if (this.nameError || this.weightError) {
       return;
     }
 
