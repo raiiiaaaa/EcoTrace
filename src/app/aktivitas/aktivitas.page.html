@@ -1,11 +1,25 @@
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
-    <ion-title class="ion-text-center">Aktivitas Saya</ion-title>
+    <!-- Toolbar normal -->
+    <ion-title class="ion-text-center" *ngIf="!isSelectMode">Aktivitas Saya</ion-title>
+
+    <!-- Toolbar select mode -->
+    <ion-buttons slot="start" *ngIf="isSelectMode">
+      <ion-button (click)="exitSelectMode()">
+        <ion-icon name="close" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title *ngIf="isSelectMode">{{ selectedCount }} dipilih</ion-title>
+    <ion-buttons slot="end" *ngIf="isSelectMode">
+      <ion-button (click)="deleteSelected()" [disabled]="selectedCount === 0">
+        <ion-icon name="trash" slot="icon-only" color="danger"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <div class="search-filter-section">
+  <div class="search-filter-section" *ngIf="!isSelectMode">
     <ion-searchbar placeholder="Search" [(ngModel)]="searchTerm" (ionInput)="filterData()"></ion-searchbar>
     <div class="filter-chips">
       <ion-chip [color]="currentFilter === 'Semua' ? 'success' : 'medium'" (click)="setFilter('Semua')">
@@ -23,14 +37,39 @@
     </div>
   </div>
 
+  <!-- Hint bar saat select mode aktif -->
+  <div class="select-hint" *ngIf="isSelectMode">
+    <ion-icon name="information-circle-outline"></ion-icon>
+    Ketuk item lain untuk menambah pilihan
+  </div>
+
   <ion-list lines="none">
-    <ion-card *ngFor="let item of filteredActivities" class="activity-card">
-      <ion-item button (click)="openAddModal(item)" detail="false">
+    <ion-card
+      *ngFor="let item of filteredActivities"
+      class="activity-card"
+      [class.selected]="isSelected(item)"
+      (click)="onItemTap(item)"
+      (mousedown)="onPressStart(item)"
+      (mouseup)="onPressEnd()"
+      (mouseleave)="onPressCancel()"
+      (touchstart)="onPressStart(item)"
+      (touchend)="onPressEnd()"
+      (touchcancel)="onPressCancel()">
+
+      <!-- Checkbox overlay saat select mode -->
+      <div class="select-overlay" *ngIf="isSelectMode">
+        <ion-icon
+          [name]="isSelected(item) ? 'checkmark-circle' : 'ellipse-outline'"
+          [color]="isSelected(item) ? 'success' : 'medium'">
+        </ion-icon>
+      </div>
+
+      <ion-item detail="false">
         <div slot="start" class="icon-box" [ngClass]="item.type.toLowerCase()">
           <img src="assets/icon/item-sampah/plastik.png" *ngIf="item.type === 'Plastik'" class="custom-waste-icon" />
           <img src="assets/icon/item-sampah/kertas.png" *ngIf="item.type === 'Kertas'" class="custom-waste-icon" />
           <img src="assets/icon/item-sampah/logam.png" *ngIf="item.type === 'Logam'" class="custom-waste-icon" />
-          <img src="assets/icon/item-sampah/b3.png" *ngIf="item.type?.toLowerCase() === 'b3' || item.name?.toLowerCase() === 'b3'" class="custom-waste-icon" />
+          <img src="assets/icon/item-sampah/b3.png" *ngIf="item.type?.toLowerCase() === 'b3'" class="custom-waste-icon" />
         </div>
         <ion-label>
           <h3>{{ item.name }}</h3>
@@ -44,7 +83,7 @@
     </ion-card>
   </ion-list>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="!isSelectMode">
     <ion-fab-button color="success" (click)="openAddModal()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
