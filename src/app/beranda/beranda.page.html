@@ -8,9 +8,9 @@
   <div class="profile-header">
     <h2>
       Hai {{ userName }} !
-      <ion-icon name="pencil" class="edit-name-icon" (click)="promptUserName()"></ion-icon>
+      <ion-icon name="pencil" class="edit-name-icon" (click)="editUserName()"></ion-icon>
     </h2>
-    <p>Lvl {{ level }} {{ levelTitle }} <ion-icon name="star" color="warning"></ion-icon></p>
+    <p>Lvl {{ level }} {{ levelTitle }} <ion-icon [name]="levelIcon"></ion-icon></p>
   </div>
 
   <div class="points-circle">

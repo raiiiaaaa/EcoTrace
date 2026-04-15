@@ -14,6 +14,7 @@ export class BerandaPage {
   userName: string = 'Warga Bumi';
   level: number = 1;
   levelTitle: string = 'Eco Beginner';
+  levelIcon: string = 'leaf-outline';
   nextLevelPoints: number = 500;
   progressPercentage: number = 0;
 
@@ -77,6 +78,16 @@ export class BerandaPage {
       'Eco Master',
       'Eco Warrior'
     ];
+    const icons = [
+      'leaf-outline',    // Eco Beginner
+      'book-outline',    // Eco Learner
+      'compass-outline', // Eco Scout
+      'shield-outline',  // Eco Ranger
+      'shield',          // Eco Protector
+      'star',            // Eco Guardian
+      'ribbon',          // Eco Master
+      'flame'            // Eco Warrior
+    ];
     this.level = 1;
     this.nextLevelPoints = thresholds[0];
 
@@ -90,6 +101,7 @@ export class BerandaPage {
     }
 
     this.levelTitle = titles[this.level - 1] || 'Eco Legend';
+    this.levelIcon  = icons[this.level - 1]  || 'flame';
 
     if (this.points >= thresholds[thresholds.length - 1]) {
       this.progressPercentage = 100;
@@ -117,6 +129,36 @@ export class BerandaPage {
             const name = data.name && data.name.trim() !== '' ? data.name : 'Warga Bumi';
             this.userName = name;
             this.dataService.saveUserName(name);
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
+
+  async editUserName() {
+    const alert = await this.alertCtrl.create({
+      header: 'Ubah Nama Panggilan',
+      message: `Ketik nama baru kamu...`,
+      inputs: [
+        {
+          name: 'name',
+          type: 'text',
+          value: this.userName
+        }
+      ],
+      buttons: [
+        {
+          text: 'Batal',
+          role: 'cancel'
+        },
+        {
+          text: 'Simpan',
+          handler: (data) => {
+            if (data.name && data.name.trim() !== '') {
+              this.userName = data.name.trim();
+              this.dataService.saveUserName(this.userName);
+            }
           }
         }
       ]
