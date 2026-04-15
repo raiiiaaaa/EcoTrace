@@ -11,7 +11,7 @@ import { AlertController } from '@ionic/angular';
 export class BerandaPage {
   points: number = 0;
   stats: any = { totalPlastik: 0, totalKertas: 0, totalLogam: 0, impact: '0.0' };
-  userName: string = 'Masyarakat Bumi';
+  userName: string = 'Warga Bumi';
   level: number = 1;
   levelTitle: string = 'Eco Beginner';
   nextLevelPoints: number = 500;
@@ -44,7 +44,7 @@ export class BerandaPage {
 
   loadUserName() {
     this.userName = this.dataService.getUserName();
-    if (this.userName === 'Masyarakat Bumi') {
+    if (!this.dataService.hasUserSetName()) {
       this.promptUserName();
     }
   }
@@ -114,7 +114,7 @@ export class BerandaPage {
         {
           text: 'Mulai',
           handler: (data) => {
-            const name = data.name && data.name.trim() !== '' ? data.name : 'Masyarakat Bumi';
+            const name = data.name && data.name.trim() !== '' ? data.name : 'Warga Bumi';
             this.userName = name;
             this.dataService.saveUserName(name);
           }

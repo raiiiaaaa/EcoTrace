@@ -25,6 +25,7 @@ export interface AppData {
   activities: Activity[];
   user: {
     name: string;
+    hasSetName: boolean;
   };
   dailyTip: {
     date: string;
@@ -36,7 +37,7 @@ const STORAGE_KEY = 'ecotrace_data';
 
 const DEFAULT_DATA: AppData = {
   activities: [],
-  user: { name: 'Masyarakat Bumi' },
+  user: { name: 'Warga Bumi', hasSetName: false },
   dailyTip: { date: '', index: 0 },
 };
 
@@ -139,9 +140,14 @@ export class DataService {
     return this.getData().user.name;
   }
 
+  hasUserSetName(): boolean {
+    return this.getData().user.hasSetName === true;
+  }
+
   saveUserName(name: string): void {
     const data = this.getData();
     data.user.name = name;
+    data.user.hasSetName = true;
     this.saveData(data);
   }
 

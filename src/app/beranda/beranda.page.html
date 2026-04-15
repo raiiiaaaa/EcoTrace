@@ -6,7 +6,10 @@
 
 <ion-content [fullscreen]="true" class="ion-padding">
   <div class="profile-header">
-    <h2>Hai {{ userName }} !</h2>
+    <h2>
+      Hai {{ userName }} !
+      <ion-icon name="pencil" class="edit-name-icon" (click)="promptUserName()"></ion-icon>
+    </h2>
     <p>Lvl {{ level }} {{ levelTitle }} <ion-icon name="star" color="warning"></ion-icon></p>
   </div>
 

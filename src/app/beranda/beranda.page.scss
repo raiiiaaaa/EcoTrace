@@ -4,6 +4,20 @@
   h2 {
     margin: 0;
     font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    .edit-name-icon {
+      font-size: 16px;
+      color: var(--ion-color-medium);
+      cursor: pointer;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: var(--ion-color-primary);
+      }
+    }
   }
 
   p {
