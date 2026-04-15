@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { TabsPage } from './tabs.page';
+import { OnboardingGuard } from '../guards/onboarding.guard';
 
 const routes: Routes = [
   {
@@ -14,11 +15,13 @@ const routes: Routes = [
       },
       {
         path: 'aktivitas',
-        loadChildren: () => import('../aktivitas/aktivitas.module').then( m => m.AktivitasPageModule)
+        loadChildren: () => import('../aktivitas/aktivitas.module').then( m => m.AktivitasPageModule),
+        canLoad: [OnboardingGuard]
       },
       {
         path: 'edukasi',
-        loadChildren: () => import('../edukasi/edukasi.module').then( m => m.EdukasiPageModule)
+        loadChildren: () => import('../edukasi/edukasi.module').then( m => m.EdukasiPageModule),
+        canLoad: [OnboardingGuard]
       },
       {
         path: '',
