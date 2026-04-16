@@ -6,29 +6,65 @@
         <ion-icon name="close-outline"></ion-icon>
       </ion-button>
     </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="shareArticle()">
+        <ion-icon name="share-social-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+  <!-- Article Header with Image -->
   <div class="article-header" *ngIf="article.imageUrl" [ngStyle]="{'background-image': 'url(' + article.imageUrl + ')'}">
     <div class="header-overlay">
-      <ion-chip color="success" class="category-chip">
-        <ion-icon [name]="article.icon"></ion-icon>
-        <ion-label>{{ article.category }}</ion-label>
-      </ion-chip>
+      <div class="meta-row">
+        <ion-chip class="category-chip">
+          <ion-icon [name]="article.icon"></ion-icon>
+          <ion-label>{{ article.category }}</ion-label>
+        </ion-chip>
+      </div>
       <h2>{{ article.title }}</h2>
     </div>
   </div>
 
-  <div class="article-body ion-padding">
-    <div *ngIf="!article.imageUrl">
-      <ion-chip color="success" class="category-chip">
-        <ion-icon [name]="article.icon"></ion-icon>
-        <ion-label>{{ article.category }}</ion-label>
-      </ion-chip>
+  <div class="article-body">
+    <!-- Header for cases without image -->
+    <div class="simple-header ion-padding" *ngIf="!article.imageUrl">
+      <div class="meta-row">
+        <ion-chip class="category-chip">
+          <ion-icon [name]="article.icon"></ion-icon>
+          <ion-label>{{ article.category }}</ion-label>
+        </ion-chip>
+        <span class="read-time"><ion-icon name="time-outline"></ion-icon> 3 min baca</span>
+      </div>
       <h2>{{ article.title }}</h2>
     </div>
-    
-    <p class="content-text">{{ article.content }}</p>
+
+    <div class="content-wrapper ion-padding">
+      <div class="introduction">
+        <p class="content-text">{{ article.content }}</p>
+      </div>
+
+      <!-- Quick Tips Card -->
+      <ion-card class="tips-card">
+        <ion-card-header>
+          <ion-card-subtitle>
+            <ion-icon name="bulb-outline"></ion-icon> Tips Kilat
+          </ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          Mulai dari langkah kecil hari ini untuk dampak besar bagi bumi di masa depan.
+        </ion-card-content>
+      </ion-card>
+      
+      <div class="footer-note">
+        <p>Apakah informasi ini membantu Anda? Bagikan ke teman-temanmu!</p>
+        <ion-button fill="outline" expand="block" shape="round" (click)="shareArticle()">
+          <ion-icon name="share-social-outline" slot="start"></ion-icon>
+          Bagikan Edukasi
+        </ion-button>
+      </div>
+    </div>
   </div>
 </ion-content>
