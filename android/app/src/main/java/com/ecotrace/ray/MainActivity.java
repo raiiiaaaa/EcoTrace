@@ -1,4 +1,4 @@
-package com.ecotrace.app;
+package com.ecotrace.ray;
 
 import com.getcapacitor.BridgeActivity;
 
