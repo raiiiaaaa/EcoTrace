@@ -6,9 +6,9 @@ const config: CapacitorConfig = {
   webDir: 'www',
   plugins: {
     SplashScreen: {
-      launchShowDuration: 2000,        // Durasi tampil (ms)
+      launchShowDuration: 3000,        // Durasi tampil (ms)
       launchAutoHide: true,            // Auto hilang
-      backgroundColor: "#1a1a2e",      // Warna background splash
+      backgroundColor: "#ffffff",      // Warna background splash
       androidSplashResourceName: "splash",
       androidScaleType: "CENTER_CROP",
       showSpinner: false,

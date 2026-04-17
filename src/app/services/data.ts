@@ -45,26 +45,40 @@ const DEFAULT_DATA: AppData = {
   providedIn: 'root'
 })
 export class DataService {
+  private cachedData: AppData | null = null;
 
   constructor(private http: HttpClient) {
+    this.initData();
+  }
+
+  private initData(): void {
+    // Load data sekali saat startup
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      try {
+        this.cachedData = { ...DEFAULT_DATA, ...JSON.parse(raw) };
+      } catch {
+        this.cachedData = { ...DEFAULT_DATA };
+      }
+    } else {
+      this.cachedData = { ...DEFAULT_DATA };
+    }
+
+    // Jalankan migrasi jika perlu
     this.migrateOldData();
   }
 
   // ─── Core JSON Store ───────────────────────────────────────────────────────
 
   getData(): AppData {
-    try {
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if (raw) {
-        return { ...DEFAULT_DATA, ...JSON.parse(raw) };
-      }
-    } catch {
-      // jika data rusak, reset ke default
+    if (!this.cachedData) {
+      this.initData();
     }
-    return { ...DEFAULT_DATA };
+    return this.cachedData!;
   }
 
   saveData(data: AppData): void {
+    this.cachedData = data;
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
   }
 
