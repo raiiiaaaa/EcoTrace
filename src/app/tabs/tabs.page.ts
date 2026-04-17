@@ -10,6 +10,7 @@ export class TabsPage implements OnInit {
 
   constructor() { }
 
+  // saat komponen diinisialisasi
   ngOnInit() {
   }
 

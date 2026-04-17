@@ -1,10 +1,13 @@
+<!-- header -->
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
     <ion-title class="ion-text-center">EcoTrace</ion-title>
   </ion-toolbar>
 </ion-header>
+<!-- header end -->
 
 <ion-content [fullscreen]="true" class="ion-padding">
+  <!-- profile -->
   <div class="profile-header">
     <h2>
       Hai {{ userName }} !
@@ -12,7 +15,9 @@
     </h2>
     <p>Lvl {{ level }} {{ levelTitle }} <ion-icon [name]="levelIcon"></ion-icon></p>
   </div>
+<!-- profile end -->
 
+  <!-- circular progress bar -->
   <div class="points-circle">
     <div class="circle" [style.--progress]="progressPercentage + '%'">
       <div class="circle-inner">
@@ -22,7 +27,9 @@
     </div>
     <p class="next-level">Lanjut Level: {{ nextLevelPoints | number }} pts</p>
   </div>
+  <!-- circular progress bar end -->
 
+  <!-- stats card -->
   <ion-grid>
     <ion-row>
       <ion-col size="6">
@@ -59,7 +66,9 @@
       </ion-col>
     </ion-row>
   </ion-grid>
+  <!-- stats card end -->
 
+  <!-- tips card -->
   <ion-card color="warning" class="challenge-card">
     <ion-card-header>
       <ion-card-title>
@@ -71,4 +80,5 @@
       {{ todayTip }}
     </ion-card-content>
   </ion-card>
+  <!-- tips card end -->
 </ion-content>

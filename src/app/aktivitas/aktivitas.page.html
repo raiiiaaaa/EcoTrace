@@ -1,6 +1,6 @@
+<!-- header -->
 <ion-header [translucent]="true">
   <ion-toolbar color="primary">
-    <!-- Toolbar normal -->
     <ion-title class="ion-text-center" *ngIf="!isSelectMode">Aktivitas Saya</ion-title>
 
     <!-- Toolbar select mode -->
@@ -15,10 +15,13 @@
         <ion-icon name="trash" slot="icon-only" color="danger"></ion-icon>
       </ion-button>
     </ion-buttons>
+    <!-- toolbar select mode end -->
   </ion-toolbar>
 </ion-header>
+<!-- header end -->
 
 <ion-content [fullscreen]="true">
+  <!-- search and filter -->
   <div class="search-filter-section" *ngIf="!isSelectMode">
     <ion-searchbar placeholder="Search" [(ngModel)]="searchTerm" (ionInput)="filterData()"></ion-searchbar>
     <div class="filter-chips">
@@ -36,13 +39,16 @@
       </ion-chip>
     </div>
   </div>
+  <!-- search and filter end -->
 
-  <!-- Hint bar saat select mode aktif -->
+  <!-- hint bar saat select mode aktif -->
   <div class="select-hint" *ngIf="isSelectMode">
     <ion-icon name="information-circle-outline"></ion-icon>
     Ketuk item lain untuk menambah pilihan
   </div>
+  <!-- hint bar saat select mode aktif end -->
 
+  <!-- list aktivitas -->
   <ion-list lines="none">
     <ion-card
       *ngFor="let item of filteredActivities"
@@ -82,10 +88,13 @@
       </ion-item>
     </ion-card>
   </ion-list>
+  <!-- list aktivitas end -->
 
+  <!-- tombol tambah aktivitas -->
   <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="!isSelectMode">
     <ion-fab-button color="success" (click)="openAddModal()">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+  <!-- tombol tambah aktivitas end -->
 </ion-content>

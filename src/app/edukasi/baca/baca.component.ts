@@ -14,12 +14,15 @@ export class BacaComponent implements OnInit {
 
   constructor(private modalCtrl: ModalController) {}
 
+  // saat komponen diinisialisasi
   ngOnInit() {}
 
+  // tutup modal
   dismiss() {
     this.modalCtrl.dismiss();
   }
 
+  // bagikan artikel
   async shareArticle() {
     try {
       await Share.share({

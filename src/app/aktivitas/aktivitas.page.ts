@@ -28,21 +28,25 @@ export class AktivitasPage {
     private alertCtrl: AlertController
   ) {}
 
+  // memuat data saat halaman dibuka
   ionViewWillEnter() {
     this.exitSelectMode();
     this.loadData();
   }
 
+  // memuat data
   loadData() {
     this.activities = this.dataService.getActivities();
     this.filterData();
   }
 
+  // mengatur filter
   setFilter(filter: string) {
     this.currentFilter = filter;
     this.filterData();
   }
 
+  // memfilter data
   filterData() {
     let temp = this.activities;
     if (this.currentFilter !== 'Semua') {
@@ -57,12 +61,14 @@ export class AktivitasPage {
 
   // ─── Long Press ──────────────────────────────────────────────────────────
 
+  // memulai long press
   onPressStart(item: Activity) {
     this.pressTimer = setTimeout(() => {
       this.enterSelectMode(item);
     }, this.LONG_PRESS_MS);
   }
 
+  // mengakhiri long press
   onPressEnd() {
     if (this.pressTimer) {
       clearTimeout(this.pressTimer);
@@ -70,22 +76,26 @@ export class AktivitasPage {
     }
   }
 
+  // membatalkan long press
   onPressCancel() {
     this.onPressEnd();
   }
 
   // ─── Select Mode ─────────────────────────────────────────────────────────
 
+  // masuk ke select mode
   enterSelectMode(item: Activity) {
     this.isSelectMode = true;
     this.selectedIds = new Set([item.id]);
   }
 
+  // keluar dari select mode
   exitSelectMode() {
     this.isSelectMode = false;
     this.selectedIds = new Set();
   }
 
+  // toggle select
   toggleSelect(item: Activity) {
     if (this.selectedIds.has(item.id)) {
       this.selectedIds.delete(item.id);
@@ -97,16 +107,19 @@ export class AktivitasPage {
     }
   }
 
+  // mengecek apakah item dipilih
   isSelected(item: Activity): boolean {
     return this.selectedIds.has(item.id);
   }
 
+  // mendapatkan jumlah item yang dipilih
   get selectedCount(): number {
     return this.selectedIds.size;
   }
 
   // ─── Item Tap ────────────────────────────────────────────────────────────
 
+  // tap item
   onItemTap(item: Activity) {
     if (this.isSelectMode) {
       this.toggleSelect(item);
@@ -117,6 +130,7 @@ export class AktivitasPage {
 
   // ─── Delete Selected ─────────────────────────────────────────────────────
 
+  // menghapus item yang dipilih
   async deleteSelected() {
     const count = this.selectedIds.size;
     const alert = await this.alertCtrl.create({
@@ -140,6 +154,7 @@ export class AktivitasPage {
 
   // ─── Add / Edit Modal ────────────────────────────────────────────────────
 
+  // membuka modal tambah aktivitas
   async openAddModal(activity?: Activity) {
     if (this.isSelectMode) return;
     const modal = await this.modalCtrl.create({

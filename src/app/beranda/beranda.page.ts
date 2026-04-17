@@ -35,6 +35,7 @@ export class BerandaPage {
 
   constructor(private dataService: DataService, private alertCtrl: AlertController) {}
 
+  // memuat data saat halaman dibuka
   ionViewWillEnter() {
     this.points = this.dataService.getPoints();
     this.stats = this.dataService.getStats();
@@ -43,6 +44,7 @@ export class BerandaPage {
     this.loadDailyTip();
   }
 
+  // memuat nama pengguna
   loadUserName() {
     this.userName = this.dataService.getUserName();
     if (!this.dataService.hasUserSetName()) {
@@ -50,6 +52,7 @@ export class BerandaPage {
     }
   }
 
+  // memuat tips harian
   loadDailyTip() {
     const today = new Date();
     const dateKey = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
@@ -66,6 +69,7 @@ export class BerandaPage {
     }
   }
 
+  // perhitungan level dan penentuan title
   calculateLevel() {
     const thresholds = [500, 2000, 5000, 10000, 25000, 50000, 100000];
     const titles = [
@@ -91,6 +95,7 @@ export class BerandaPage {
     this.level = 1;
     this.nextLevelPoints = thresholds[0];
 
+    // perulangan untuk menentukan level
     for (let i = 0; i < thresholds.length; i++) {
       if (this.points >= thresholds[i]) {
         this.level = i + 2;
@@ -110,6 +115,7 @@ export class BerandaPage {
     }
   }
 
+  // pengisian profil pada pertama kali buka aplikasi
   async promptUserName() {
     const alert = await this.alertCtrl.create({
       header: 'Selamat Datang!',
@@ -126,7 +132,7 @@ export class BerandaPage {
         {
           text: 'Mulai',
           handler: (data) => {
-            const name = data.name && data.name.trim() !== '' ? data.name : 'Warga Bumi';
+            const name = data.name && data.name.trim() !== '' ? data.name : 'Warga Bumi'; // jika nama kosong maka akan diisi dengan data default 'Warga Bumi'
             this.userName = name;
             this.dataService.saveUserName(name);
           }
@@ -136,6 +142,7 @@ export class BerandaPage {
     await alert.present();
   }
 
+  // mengubah nama profil
   async editUserName() {
     const alert = await this.alertCtrl.create({
       header: 'Ubah Nama Panggilan',
@@ -155,8 +162,8 @@ export class BerandaPage {
         {
           text: 'Simpan',
           handler: (data) => {
-            if (data.name && data.name.trim() !== '') {
-              this.userName = data.name.trim();
+            if (data.name && data.name.trim() !== '') { // jika nama tidak kosong
+              this.userName = data.name.trim(); 
               this.dataService.saveUserName(this.userName);
             }
           }

@@ -9,7 +9,9 @@ export class OnboardingGuard implements CanLoad {
 
   constructor(private dataService: DataService, private router: Router) {}
 
+  // saat guard diakses
   canLoad(): boolean {
+    // cek apakah user sudah mengisi nama
     if (this.dataService.hasUserSetName()) {
       return true;
     }

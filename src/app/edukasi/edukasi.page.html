@@ -4,9 +4,15 @@
   </ion-toolbar>
 </ion-header>
 
+
 <ion-content [fullscreen]="true">
+  <!-- search filter section -->
   <div class="search-filter-section">
+    <!-- search bar -->
     <ion-searchbar placeholder="Search" [(ngModel)]="searchTerm" (ionInput)="filterData()"></ion-searchbar>
+    <!-- search bar end -->
+
+    <!-- filter chips -->
     <div class="filter-chips">
       <ion-chip [color]="currentFilter === 'Semua' ? 'success' : 'medium'" (click)="setFilter('Semua')">
         <ion-label>Semua</ion-label>
@@ -24,8 +30,11 @@
         <ion-label>Lainnya</ion-label>
       </ion-chip>
     </div>
+    <!-- filter chips end -->
   </div>
+  <!-- search filter section end -->
 
+  <!-- list artikel -->
   <ion-list lines="none" class="article-list">
     <ion-card *ngFor="let article of filteredArticles" class="article-card" [ngStyle]="{'background-color': article.color}">
       <ion-item class="article-item" color="transparent" lines="none" button (click)="openArticle(article)" detail="false">
@@ -38,4 +47,5 @@
       </ion-item>
     </ion-card>
   </ion-list>
+  <!-- list artikel end -->
 </ion-content>

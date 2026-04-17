@@ -14,6 +14,7 @@
   </ion-toolbar>
 </ion-header>
 
+
 <ion-content [fullscreen]="true">
   <!-- Article Header with Image -->
   <div class="article-header" *ngIf="article.imageUrl" [ngStyle]="{'background-image': 'url(' + article.imageUrl + ')'}">
@@ -27,7 +28,9 @@
       <h2>{{ article.title }}</h2>
     </div>
   </div>
+  <!-- Article Header with Image end -->
 
+  <!-- article body -->
   <div class="article-body">
     <!-- Header for cases without image -->
     <div class="simple-header ion-padding" *ngIf="!article.imageUrl">
@@ -40,11 +43,14 @@
       </div>
       <h2>{{ article.title }}</h2>
     </div>
+    <!-- Header for cases without image end -->
 
+    <!-- content wrapper -->
     <div class="content-wrapper ion-padding">
       <div class="introduction">
         <p class="content-text">{{ article.content }}</p>
       </div>
+      <!-- content wrapper end -->
 
       <!-- Quick Tips Card -->
       <ion-card class="tips-card">
@@ -57,7 +63,9 @@
           Mulai dari langkah kecil hari ini untuk dampak besar bagi bumi di masa depan.
         </ion-card-content>
       </ion-card>
+      <!-- Quick Tips Card end -->
       
+      <!-- footer note -->
       <div class="footer-note">
         <p>Apakah informasi ini membantu Anda? Bagikan ke teman-temanmu!</p>
         <ion-button fill="outline" expand="block" shape="round" (click)="shareArticle()">
@@ -65,6 +73,8 @@
           Bagikan Edukasi
         </ion-button>
       </div>
+      <!-- footer note end -->
     </div>
+    <!-- article body end -->
   </div>
 </ion-content>
