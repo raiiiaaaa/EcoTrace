@@ -3,8 +3,8 @@ import { AlertController, ToastController } from '@ionic/angular';
 import { DataService } from '../services/data';
 
 import { Platform } from '@ionic/angular';
-import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
-import { Share } from '@capacitor/share';
+import { registerPlugin } from '@capacitor/core';
+const FileSaver = registerPlugin<any>('FileSaver');
 
 @Component({
   selector: 'app-pengaturan',
@@ -32,22 +32,17 @@ export class PengaturanPage implements OnInit {
 
     if (this.platform.is('capacitor')) {
       try {
-        const result = await Filesystem.writeFile({
-          path: exportFileDefaultName,
+        await FileSaver.saveFile({
           data: dataStr,
-          directory: Directory.Cache,
-          encoding: Encoding.UTF8
+          filename: exportFileDefaultName
         });
-
-        await Share.share({
-          title: 'Ekspor Data EcoTrace',
-          text: 'Pilih lokasi untuk menyimpan file backup data EcoTrace.',
-          url: result.uri,
-          dialogTitle: 'Simpan File JSON'
-        });
-      } catch (e) {
-        console.error('Error exporting data natively', e);
-        this.showToast('Gagal mengekspor data.', 'danger');
+        
+        this.showToast('Data berhasil disimpan!', 'success');
+      } catch (e: any) {
+        if (e && e.message !== 'Dibatalkan') {
+          console.error('Error exporting data natively', e);
+          this.showToast('Gagal menyimpan file: ' + (e.message || ''), 'danger');
+        }
       }
     } else {
       const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
