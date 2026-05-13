@@ -22,6 +22,8 @@
 
     ion-input, ion-select {
       font-size: 15px;
+      color: #111;
+      --placeholder-color: #777;
     }
 
     &.input-error {

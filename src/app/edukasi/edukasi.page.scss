@@ -26,7 +26,7 @@
   .title-wrap {
     font-size: 18px;
     font-weight: 700;
-    color: #333;
+    color: var(--ion-text-color);
     white-space: normal;
     line-height: 1.4;
     padding-right: 20px;
@@ -34,7 +34,21 @@
 
   .icon-wrap {
     font-size: 50px;
-    color: #333;
+    color: var(--ion-text-color);
     opacity: 0.8;
   }
+}
+
+/* Kategori Warna (Light Mode Default) */
+.category-plastik { background-color: #c2e3fc; }
+.category-kompos { background-color: #dcf4c6; }
+.category-b3 { background-color: #ffecb3; }
+.category-lainnya { background-color: #b6b2a5; }
+
+/* Kategori Warna (Dark Mode) */
+@media (prefers-color-scheme: dark) {
+  .category-plastik { background-color: #4a7c9d; }
+  .category-kompos { background-color: #6a8c4f; }
+  .category-b3 { background-color: #a89148; }
+  .category-lainnya { background-color: #6c6960; }
 }

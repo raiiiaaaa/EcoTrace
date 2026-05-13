@@ -36,7 +36,7 @@
 
   <!-- list artikel -->
   <ion-list lines="none" class="article-list">
-    <ion-card *ngFor="let article of filteredArticles" class="article-card" [ngStyle]="{'background-color': article.color}">
+    <ion-card *ngFor="let article of filteredArticles" class="article-card category-{{ article.category | lowercase }}">
       <ion-item class="article-item" color="transparent" lines="none" button (click)="openArticle(article)" detail="false">
         <ion-label>
           <h2 class="title-wrap">{{ article.title }}</h2>

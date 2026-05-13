@@ -3,7 +3,7 @@
     "id": "1",
     "title": "Kenali 7 Simbol Daur Ulang Plastik",
     "icon": "water",
-    "color": "#c2e3fc",
+    "color": "#4a7c9d",
     "category": "Plastik",
     "content": "Plastik memiliki 7 kode segitiga daur ulang. Nomor 1 (PET/PETE) dan 2 (HDPE) adalah yang paling mudah didaur ulang. Sedangkan no 3 (PVC) sangat berbahaya dan no 7 (Other) sulit didaur ulang.",
     "imageUrl": "assets/images/edukasi-content/plastik/cover_plastic.jpeg"
@@ -12,7 +12,7 @@
     "id": "2",
     "title": "Panduan Kompos Rumahan Mudah",
     "icon": "leaf",
-    "color": "#dcf4c6",
+    "color": "#6a8c4f",
     "category": "Kompos",
     "content": "Kumpulkan sampah organik (potongan sayur/buah). Siapkan wadah bertutup, cacah sisa organik, lapisi selang-seling dengan daun kering/tanah, jaga kelembapannya. Dalam 3-4 minggu kompos siap dipakai!",
     "imageUrl": "assets/images/edukasi-content/kompos/cover_compost.jpg"
@@ -21,7 +21,7 @@
     "id": "3",
     "title": "Apa Itu Sampah B3 & Bahayanya",
     "icon": "warning",
-    "color": "#ffecb3",
+    "color": "#a89148",
     "category": "B3",
     "content": "Limbah B3 merupakan singkatan dari Limbah Bahan Berbahaya dan Beracun. Digolongkan sebagai limbah B3 bila mengandung bahan berbahaya atau beracun yang sifat dan konsentrasinya, baik langsung maupun tidak langsung, dapat merusak atau mencemarkan lingkungan hidup atau membahayakan kesehatan manusia.\n\nBahan-bahan ini termasuk limbah B3 bila memiliki salah satu atau lebih karakteristik berikut: mudah meledak, mudah terbakar, bersifat reaktif, beracun, menyebabkan infeksi, bersifat korosif, dan lain-lain.\n\nPengelolaan Limbah B3 merupakan salah satu rangkaian kegiatan yang mencakup penyimpanan, pengumpulan, pemanfaatan, pengangkutan, dan pengolahan limbah B3 termasuk penimbunan hasil pengolahan tersebut.",
     "imageUrl": "assets/images/edukasi-content/b3/cover_b3.jpg"
@@ -30,7 +30,7 @@
     "id": "4",
     "title": "Pandawara Group: Pemuda Inspiratif Penggiat Bebersih Sungai",
     "icon": "telescope",
-    "color": "#b6b2a5",
+    "color": "#6c6960",
     "category": "Lainnya",
     "content": "Aksi bersih-bersih sampah di sungai yang digawangi lima anak muda ini berawal dari sebuah keresahan. Gilang, Rifqi, Agung, Iksan dan Rafly mengeluhkan banjir yang kerap melanda kawasan rumah mereka.\n\nDari keresahan itu, muncul rasa penasaran apa yang menyebabkan banjir kerap terjadi. Mereka menemukan bahwa sampah yang menumpuk di sungai menjadi salah satu penyebab utama banjir di lingkungan mereka.\n\nKini mereka menjadi inspirasi bagi banyak pemuda di Indonesia untuk lebih peduli terhadap kebersihan lingkungan sekitar.",
     "imageUrl": "assets/images/edukasi-content/lainnya/pandawara-group.jpeg"
@@ -39,7 +39,7 @@
     "id": "5",
     "title": "Pemilahan Sampah dari Rumah",
     "icon": "telescope",
-    "color": "#b6b2a5",
+    "color": "#6c6960",
     "category": "Lainnya",
     "content": "Pemilahan sampah yaitu kegiatan mengelompokkan dan memisahkan sampah sesuai dengan jenis, jumlah dan/atau sifat sampah.\n\nDi rumah, sampah bisa dikelompokkan menjadi 3 Utama:\n1. Sampah Organik\n2. Sampah Anorganik\n3. Sampah Residu\n\nTujuannya adalah untuk mempermudah pengelolaan selanjutnya serta mengurangi pencemaran udara akibat penumpukan sampah tercampur.\n\nManfaat lain dari pemilahan sampah dari rumah yaitu dapat menambah nilai ekonomi. Mari kita memilah sampah mulai dari sumbernya karena memberikan manfaat baik bagi diri sendiri maupun lingkungan.",
     "imageUrl": "assets/images/edukasi-content/lainnya/pemilahan-sampah.webp"
