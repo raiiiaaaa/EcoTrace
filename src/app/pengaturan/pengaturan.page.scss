@@ -1,0 +1,63 @@
+ion-toolbar {
+  --background: var(--ion-color-primary);
+  --color: white;
+}
+
+.section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--ion-color-medium);
+  margin-top: 25px;
+  margin-bottom: 10px;
+  padding-left: 10px;
+}
+
+.developer-card {
+  margin: 10px 0 20px 0;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+
+  ion-card-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--ion-color-primary);
+  }
+
+  .dev-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    
+    ion-icon {
+      font-size: 1.5rem;
+    }
+    
+    p {
+      margin: 0;
+      font-size: 1.05rem;
+      color: #444;
+    }
+  }
+
+  .app-version {
+    margin-top: 15px;
+    font-size: 0.9rem;
+    color: var(--ion-color-medium);
+  }
+}
+
+ion-list {
+  border-radius: 15px;
+  margin: 0;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+}
+
+ion-item {
+  --padding-start: 15px;
+  --inner-padding-end: 15px;
+  
+  ion-icon {
+    font-size: 1.4rem;
+  }
+}

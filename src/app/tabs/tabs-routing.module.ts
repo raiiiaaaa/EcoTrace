@@ -24,6 +24,10 @@ const routes: Routes = [
         canLoad: [OnboardingGuard]
       },
       {
+        path: 'pengaturan',
+        loadChildren: () => import('../pengaturan/pengaturan.module').then( m => m.PengaturanPageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/beranda',
         pathMatch: 'full'

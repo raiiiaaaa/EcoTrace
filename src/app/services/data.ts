@@ -224,4 +224,33 @@ export class DataService {
   getEducationArticles(): Observable<EducationArticle[]> {
     return this.http.get<EducationArticle[]>('assets/data/education.json');
   }
+
+  // ─── Data Management ───────────────────────────────────────────────────────
+
+  // hapus semua data
+  clearData(): void {
+    this.cachedData = { ...DEFAULT_DATA };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(this.cachedData));
+  }
+
+  // ekspor data
+  getRawData(): string {
+    return JSON.stringify(this.getData(), null, 2);
+  }
+
+  // impor data
+  importData(jsonData: string): boolean {
+    try {
+      const parsedData = JSON.parse(jsonData);
+      // Validasi sederhana (pastikan properti utama ada)
+      if (parsedData && Array.isArray(parsedData.activities) && parsedData.user) {
+        this.saveData(parsedData);
+        return true;
+      }
+      return false;
+    } catch (e) {
+      console.error('Format data tidak valid', e);
+      return false;
+    }
+  }
 }
