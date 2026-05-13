@@ -2,6 +2,10 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
 import { DataService } from '../services/data';
 
+import { Platform } from '@ionic/angular';
+import { Filesystem, Directory, Encoding } from '@capacitor/filesystem';
+import { Share } from '@capacitor/share';
+
 @Component({
   selector: 'app-pengaturan',
   templateUrl: './pengaturan.page.html',
@@ -14,25 +18,45 @@ export class PengaturanPage implements OnInit {
   constructor(
     private dataService: DataService,
     private alertCtrl: AlertController,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private platform: Platform
   ) { }
 
   ngOnInit() {
   }
 
   // ─── Export Data ──────────────────────────────────────────────────────────
-  exportData() {
+  async exportData() {
     const dataStr = this.dataService.getRawData();
-    const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
-    
     const exportFileDefaultName = 'ecotrace-data-backup.json';
 
-    const linkElement = document.createElement('a');
-    linkElement.setAttribute('href', dataUri);
-    linkElement.setAttribute('download', exportFileDefaultName);
-    linkElement.click();
-    
-    this.showToast('Data berhasil diekspor!');
+    if (this.platform.is('capacitor')) {
+      try {
+        const result = await Filesystem.writeFile({
+          path: exportFileDefaultName,
+          data: dataStr,
+          directory: Directory.Cache,
+          encoding: Encoding.UTF8
+        });
+
+        await Share.share({
+          title: 'Ekspor Data EcoTrace',
+          text: 'Pilih lokasi untuk menyimpan file backup data EcoTrace.',
+          url: result.uri,
+          dialogTitle: 'Simpan File JSON'
+        });
+      } catch (e) {
+        console.error('Error exporting data natively', e);
+        this.showToast('Gagal mengekspor data.', 'danger');
+      }
+    } else {
+      const dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(dataStr);
+      const linkElement = document.createElement('a');
+      linkElement.setAttribute('href', dataUri);
+      linkElement.setAttribute('download', exportFileDefaultName);
+      linkElement.click();
+      this.showToast('Data berhasil diekspor!');
+    }
   }
 
   // ─── Import Data ──────────────────────────────────────────────────────────
