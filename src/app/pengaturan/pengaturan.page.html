@@ -1,16 +1,10 @@
-<ion-header [translucent]="true" class="ion-no-border">
+<ion-header [translucent]="true">
   <ion-toolbar color="primary">
-    <ion-title>Pengaturan</ion-title>
+    <ion-title class="ion-text-center">Pengaturan</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true" color="light">
-  <ion-header collapse="condense" class="ion-no-border">
-    <ion-toolbar color="primary">
-      <ion-title size="large">Pengaturan</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
+<ion-content [fullscreen]="true">
   <div class="ion-padding">
     <!-- Informasi Developer -->
     <ion-card class="developer-card">
@@ -20,8 +14,7 @@
       </ion-card-header>
       <ion-card-content>
         <div class="dev-info">
-          <ion-icon name="code-working-outline" color="primary"></ion-icon>
-          <p>Dibuat dengan ❤️ oleh <strong>Rayya Sevareno</strong>.</p>
+          <p>Dibuat oleh <strong>Rayya Sevareno</strong>.</p>
         </div>
         <p class="app-version">Versi Aplikasi: 1.0.0</p>
       </ion-card-content>
@@ -37,21 +30,18 @@
       </ion-item>
 
       <ion-item button (click)="triggerImport()" detail="false">
-        <ion-icon name="upload-outline" slot="start" color="tertiary"></ion-icon>
+        <ion-icon name="cloud-upload-outline" slot="start" color="tertiary"></ion-icon>
         <ion-label>Impor Data (Restore)</ion-label>
       </ion-item>
       
       <!-- Hidden file input for import -->
       <input type="file" #fileInput (change)="importData($event)" accept=".json" style="display: none;">
 
-    </ion-list>
-
-    <h2 class="section-title">Zona Bahaya</h2>
-    <ion-list inset="true">
       <ion-item button (click)="confirmClearData()" lines="none" detail="false">
         <ion-icon name="trash-outline" slot="start" color="danger"></ion-icon>
         <ion-label color="danger">Hapus Seluruh Data</ion-label>
       </ion-item>
+
     </ion-list>
 
   </div>

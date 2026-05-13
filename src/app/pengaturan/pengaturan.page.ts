@@ -64,7 +64,7 @@ export class PengaturanPage implements OnInit {
   async confirmClearData() {
     const alert = await this.alertCtrl.create({
       header: 'Konfirmasi Hapus',
-      message: 'Apakah Anda yakin ingin menghapus <strong>seluruh data</strong> aktivitas dan poin? Tindakan ini tidak dapat dibatalkan.',
+      message: 'Apakah Anda yakin ingin menghapus seluruh data aktivitas dan poin? Tindakan ini tidak dapat dibatalkan.',
       buttons: [
         {
           text: 'Batal',
