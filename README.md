@@ -126,8 +126,6 @@ Pastikan Anda sudah menginstal perangkat lunak berikut di komputer Anda:
 
 ## 🎨 Review Antarmuka Pengguna (UI Review)
 
-> [!NOTE]
-> *Bagian ini menyajikan tinjauan desain antarmuka aplikasi EcoTrace. Silakan ganti placeholder gambar di bawah ini dengan screenshot UI aktual aplikasi Anda.*
 
 ### 📊 1. Halaman Beranda (Dashboard)
 
